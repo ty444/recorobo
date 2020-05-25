@@ -1,0 +1,5 @@
+私のオススメの言語は、$languageです。
+I recommend $language lang.
+
+この言語は好きですか? [Yes/No]
+Do you like it? [y/n]

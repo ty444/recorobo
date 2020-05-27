@@ -60,4 +60,43 @@ class RankingModel(CsvModel):
                     row[RANKING_COLUMN_COUNT])
         return self.data
 
-    
+    def save(self):
+        """save data to csv file."""
+        
+        with open(self.csv_file, 'w+') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=self.column)
+            writer.writeheader()
+
+            for name, count in self.data.items():
+                writer.writerow({
+                    RANKING_COLUMN_NAME: name,
+                    RANKING_COLUMN_COUNT: count
+                })
+
+    def get_most_popular(self, not_list=None):
+        """Fetch the data of the top most ranking.
+
+        Args:
+            not_list (list): Excludes the name on the list.
+
+        Returns:
+            str: Returns the data of the top most ranking
+        """
+        if not_list is None:
+            not_list = []
+
+        if not self.data:
+            return None
+        
+        sorted_data = sorted(self.data, key=self.data.get, reverse=True)
+        for name in sorted_data:
+            if name in not_list:
+                continue
+            return name
+        
+    def increment(self, name):
+        """Increase rank for the give name."""
+        self.data[name.title()] += 1
+        self.save()
+
+

@@ -46,7 +46,7 @@ def find_template(temp_file):
     return temp_file_path
 
 
-def get_template(temp_file_path, color=None):
+def get_template(template_file_path, color=None):
     """Return the path of the template.
 
     Args:

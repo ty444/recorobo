@@ -1,2 +1,0 @@
-$user_nameさん。どの言語が好きですか？
-$user_name, which languages do you like?
